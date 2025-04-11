@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import random
 
@@ -8,7 +9,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.functional as F
 from torch.utils.data import TensorDataset, DataLoader
 
 #Download the punkt tokenizer for the first time
@@ -33,6 +33,8 @@ class ChatbotModel(nn.Module):
         x=self.dropout(x)
         #going to apply softmax in a loss function
         x=self.fc3(x)
+
+        return x
 
 class ChatbotHandler:
     def __init__(self, intents_path, function_mappings = None):
@@ -61,7 +63,6 @@ class ChatbotHandler:
         return[1 if word in words else 0 for word in vocabulary]
 
     def parse_intents(self):
-        lemmatizer = nltk.WordNetLemmatizer()
         if os.path.exists(self.intents_path):
             with open(self.intents_path, 'r') as file:
                 intents = json.load(file)
@@ -122,7 +123,7 @@ class ChatbotHandler:
         print("Training complete.")
 
 
-    def save_model(self,  model_path, dimensions_path):
+    def save_model(self, model_path, dimensions_path):
         torch.save(self.model.state_dict(), model_path)
 
         with open(dimensions_path, 'w') as file:
@@ -130,7 +131,8 @@ class ChatbotHandler:
                 'input_size': self.X.shape[1],
                 'output_size': len(self.intents),
                 'vocabulary': self.vocabulary,
-                'intents': self.intents
+                'intents': self.intents,
+                'intents_responses': self.intents_responses
             }, file)
 
     def load_model(self, model_path, dimensions_path):
@@ -139,18 +141,25 @@ class ChatbotHandler:
 
         self.model = ChatbotModel(dimensions['input_size'], dimensions['output_size'])
         self.model.load_state_dict(torch.load(model_path, weights_only=True))
-
+        
+        self.vocabulary = dimensions['vocabulary']
+        self.intents = dimensions['intents']
+        self.intents_responses = dimensions['intents_responses']
 
     def process_message(self, message):
         #tokenize
         words = self.tokenize(message)
         #bag of words
         bag = self.BoW(words, self.vocabulary)
+        if not any(bag):
+            print("Warning: No words matched in vocabulary", file=sys.stderr)
+            return "I'm sorry, I don't understand that."
+           
         #convert to tensor
         bag_tensor = torch.tensor(bag, dtype=torch.float32)
         self.model.eval()
         with torch.no_grad():
-            predictions = self.model(bag_tensor)
+            predictions = self.model(bag_tensor).unsqueeze(0)
 
         predicted_class_index = torch.argmax(predictions,dim=1).item()
         predicted_intent = self.intents[predicted_class_index]

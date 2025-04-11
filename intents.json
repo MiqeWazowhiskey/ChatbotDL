@@ -2,29 +2,355 @@
 	"intents": [
 		{
 			"tag": "greeting",
-			"patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up", "Hey", "greetings"],
-			"responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?"]
+			"patterns": [
+				"Hi",
+				"Hey",
+				"Hello",
+				"Good morning",
+				"Good evening",
+				"Good afternoon",
+				"What's up",
+				"How are you",
+				"How's it going"
+			],
+			"responses": [
+				"Hello! How can I help you today?",
+				"Hi there! What can I do for you?",
+				"Hey! How's your day going?"
+			]
 		},
 		{
 			"tag": "goodbye",
-			"patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day", "bye", "cao", "see ya"],
-			"responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!"]
+			"patterns": [
+				"Bye",
+				"See you later",
+				"Goodbye",
+				"Take care",
+				"Have a nice day",
+				"See you",
+				"Bye bye",
+				"Good night"
+			],
+			"responses": [
+				"Goodbye! Have a great day!",
+				"See you later! Take care!",
+				"Bye! Come back anytime!"
+			]
+		},
+		{
+			"tag": "thanks",
+			"patterns": [
+				"Thanks",
+				"Thank you",
+				"Thank you very much",
+				"Thanks a lot",
+				"Appreciate it",
+				"Thanks a bunch"
+			],
+			"responses": [
+				"You're welcome!",
+				"No problem!",
+				"Glad I could help!"
+			]
 		},
 		{
 			"tag": "programming",
-			"patterns": ["What is progamming?", "What is coding?", "Tell me about programming", "Tell me about coding", "What is software development?"],
-			"responses": ["Programming, coding or software development, means writing computer code to automate tasks."]
+			"patterns": [
+				"What is programming",
+				"Tell me about coding",
+				"Explain programming",
+				"What is coding",
+				"What is software development",
+				"How to code",
+				"What is a programming language"
+			],
+			"responses": [
+				"Programming is the process of creating instructions for computers to execute. It involves writing code in programming languages to solve problems and create software applications.",
+				"Coding is the act of writing instructions in a programming language that computers can understand and execute. It's like giving step-by-step directions to a computer.",
+				"Programming is about creating software by writing code. It's a way to communicate with computers and make them perform specific tasks."
+			]
 		},
 		{
-			"tag": "resource",
-			"patterns": ["Where can I learn to code?", "Best way to learn to code", "How can I learn programming", "Good programming resources",
-								   "Can you recommend good coding resources?"],
-			"responses": ["Check out the NeuralNine YouTube channel and The Python Bible series (7 in 1)."]
+			"tag": "learning",
+			"patterns": [
+				"Where can I learn programming",
+				"Best programming resources",
+				"Programming tutorials",
+				"Learn to code",
+				"Coding resources",
+				"Programming courses",
+				"Where to start coding"
+			],
+			"responses": [
+				"There are many great online platforms and resources for learning programming. You can start with interactive tutorials and courses.",
+				"Learning programming is a journey. Start with the basics, practice regularly, and build projects to improve your skills.",
+				"Many online platforms offer programming courses for beginners. Find one that matches your learning style and interests."
+			]
 		},
 		{
-			"tag": "stocks",
-			"patterns": ["What are my stocks?", "Which stocks do I own?", "Show my stock portfolio"],
-			"responses": ["Here are your stocks!"]
+			"tag": "small_talk",
+			"patterns": [
+				"How are you doing",
+				"How's your day",
+				"What's new",
+				"How's everything",
+				"How have you been",
+				"What's going on",
+				"How's life"
+			],
+			"responses": [
+				"I'm doing well, thanks for asking! How about you?",
+				"Everything's good here! How's your day going?",
+				"I'm great! How have you been?"
+			]
+		},
+		{
+			"tag": "hobbies",
+			"patterns": [
+				"What do you like to do",
+				"What are your hobbies",
+				"What do you enjoy",
+				"What are your interests",
+				"What do you do for fun"
+			],
+			"responses": [
+				"I enjoy helping people learn about programming and technology!",
+				"I like discussing technology and coding topics with people.",
+				"I'm interested in programming, software development, and helping others learn."
+			]
+		},
+		{
+			"tag": "technology",
+			"patterns": [
+				"What is AI",
+				"Tell me about artificial intelligence",
+				"What is machine learning",
+				"Explain deep learning",
+				"What is data science",
+				"What is big data",
+				"What is cloud computing"
+			],
+			"responses": [
+				"AI (Artificial Intelligence) is the simulation of human intelligence in machines that are programmed to think and learn like humans.",
+				"Machine Learning is a subset of AI that enables systems to learn and improve from experience without being explicitly programmed.",
+				"Data Science is the field of study that combines domain expertise, programming skills, and knowledge of mathematics to extract meaningful insights from data."
+			]
+		},
+		{
+			"tag": "career",
+			"patterns": [
+				"How to become a programmer",
+				"What do programmers do",
+				"What is a software engineer",
+				"What is a developer",
+				"What is a data scientist",
+				"What is a web developer",
+				"What is a game developer"
+			],
+			"responses": [
+				"Programmers write code to create software applications, websites, and other digital solutions. They solve problems and build technology.",
+				"A software engineer is someone who applies engineering principles to software development, creating reliable and efficient software systems.",
+				"Developers are professionals who create software applications, often specializing in specific areas like web, mobile, or game development."
+			]
+		},
+		{
+			"tag": "future",
+			"patterns": [
+				"What is the future of programming",
+				"Future of technology",
+				"Future of AI",
+				"Future of software development",
+				"Future of computers",
+				"Future of coding",
+				"Future of technology jobs"
+			],
+			"responses": [
+				"The future of programming will likely involve more AI-assisted development, low-code platforms, and continued evolution of programming languages.",
+				"Technology is constantly evolving, with AI, quantum computing, and other innovations shaping the future of how we interact with computers.",
+				"The future of software development will continue to focus on automation, AI integration, and making development more accessible to everyone."
+			]
+		},
+		{
+			"tag": "unknown",
+			"patterns": [
+				"What time is it",
+				"What's the weather",
+				"Where are you",
+				"Who are you",
+				"How old are you",
+				"What's your name",
+				"Where do you live",
+				"What can you do",
+				"Tell me a joke",
+				"Sing a song",
+				"What's the date",
+				"What day is it",
+				"Where am I",
+				"Who made you",
+				"Are you human",
+				"Do you have feelings",
+				"Can you think",
+				"Are you alive"
+			],
+			"responses": [
+				"I'm sorry, I don't have that information.",
+				"I'm not programmed to know that.",
+				"I'm just a simple chatbot focused on programming and general conversation.",
+				"I can only help with programming-related questions and general conversation.",
+				"I don't have access to that information."
+			]
+		},
+		{
+			"tag": "capabilities",
+			"patterns": [
+				"What can you help with",
+				"What do you know",
+				"What topics can you discuss",
+				"What are you good at",
+				"What can you do",
+				"What questions can you answer"
+			],
+			"responses": [
+				"I can help with programming concepts, learning resources, and general conversation.",
+				"I know about programming fundamentals and enjoy casual conversation.",
+				"I'm designed to discuss programming topics and engage in friendly chat."
+			]
+		},
+		{
+			"tag": "food",
+			"patterns": [
+				"What's your favorite food",
+				"Do you like cooking",
+				"What do you eat",
+				"Do you like pizza",
+				"What's for dinner",
+				"Do you like coffee",
+				"Do you like tea"
+			],
+			"responses": [
+				"I don't actually eat, but I hear humans love pizza!",
+				"I'm a chatbot, so I don't eat, but I can talk about food!",
+				"I don't have taste buds, but I know many people enjoy coffee and tea!"
+			]
+		},
+		{
+			"tag": "music",
+			"patterns": [
+				"Do you like music",
+				"What music do you like",
+				"Do you listen to music",
+				"What's your favorite song",
+				"Do you like rock music",
+				"Do you like pop music",
+				"Do you like classical music"
+			],
+			"responses": [
+				"I don't actually listen to music, but I know it's important to many people!",
+				"I'm a chatbot, so I don't have musical preferences, but I can chat about music!",
+				"I don't have ears, but I know music brings joy to many people!"
+			]
+		},
+		{
+			"tag": "movies",
+			"patterns": [
+				"Do you like movies",
+				"What's your favorite movie",
+				"Do you watch movies",
+				"Do you like action movies",
+				"Do you like comedy movies",
+				"Do you like sci-fi movies",
+				"Do you like horror movies"
+			],
+			"responses": [
+				"I don't actually watch movies, but I know they're a great way to relax!",
+				"I'm a chatbot, so I don't watch movies, but I can chat about them!",
+				"I don't have eyes, but I know movies are a popular form of entertainment!"
+			]
+		},
+		{
+			"tag": "sports",
+			"patterns": [
+				"Do you like sports",
+				"What sports do you like",
+				"Do you play sports",
+				"Do you like football",
+				"Do you like basketball",
+				"Do you like tennis",
+				"Do you like swimming"
+			],
+			"responses": [
+				"I don't actually play sports, but I know they're great for health and fun!",
+				"I'm a chatbot, so I don't play sports, but I can chat about them!",
+				"I don't have a physical body, but I know sports are important to many people!"
+			]
+		},
+		{
+			"tag": "travel",
+			"patterns": [
+				"Do you like to travel",
+				"Where have you traveled",
+				"Do you like beaches",
+				"Do you like mountains",
+				"Do you like cities",
+				"Do you like nature",
+				"Where would you like to go"
+			],
+			"responses": [
+				"I don't actually travel, but I know it's a great way to explore the world!",
+				"I'm a chatbot, so I don't travel, but I can chat about different places!",
+				"I don't have a physical body, but I know traveling is exciting for many people!"
+			]
+		},
+		{
+			"tag": "books",
+			"patterns": [
+				"Do you like reading",
+				"What books do you like",
+				"Do you read books",
+				"Do you like fiction",
+				"Do you like non-fiction",
+				"Do you like novels",
+				"Do you like poetry"
+			],
+			"responses": [
+				"I don't actually read books, but I know they're a great source of knowledge!",
+				"I'm a chatbot, so I don't read books, but I can chat about them!",
+				"I don't have eyes, but I know books are important to many people!"
+			]
+		},
+		{
+			"tag": "weather",
+			"patterns": [
+				"How's the weather",
+				"Is it sunny",
+				"Is it raining",
+				"Is it cold",
+				"Is it hot",
+				"What's the temperature",
+				"Do you like the weather"
+			],
+			"responses": [
+				"I don't actually experience weather, but I know it affects people's daily lives!",
+				"I'm a chatbot, so I don't feel weather, but I can chat about it!",
+				"I don't have senses, but I know weather is important to plan your day!"
+			]
+		},
+		{
+			"tag": "time",
+			"patterns": [
+				"What time is it",
+				"What day is it",
+				"What's the date",
+				"What month is it",
+				"What year is it",
+				"What season is it",
+				"Is it morning"
+			],
+			"responses": [
+				"I don't actually keep track of time, but I know it's important for humans!",
+				"I'm a chatbot, so I don't experience time the same way humans do!",
+				"I don't have a sense of time, but I know it's crucial for daily life!"
+			]
 		}
 	]
 }
