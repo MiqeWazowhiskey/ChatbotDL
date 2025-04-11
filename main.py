@@ -13,6 +13,7 @@ from torch.utils.data import TensorDataset, DataLoader
 
 #Download the punkt tokenizer for the first time
 #nltk.download('punkt_tab')
+#nltk.download('wordnet')
 
 class ChatbotModel(nn.Module):
     def __init__(self,input_size,output_size):
@@ -40,7 +41,7 @@ class ChatbotHandler:
         self.documents = []
         self.vocabulary = []
         self.intents = []
-        self.intents_responses = []
+        self.intents_responses = {}
 
         self.function_mappings = function_mappings if function_mappings else {}
 
@@ -55,7 +56,25 @@ class ChatbotHandler:
         return [lemmatizer.lemmatize(word.lower()) for word in words]
 
 
+    @staticmethod
+    def BoW(words,vocabulary):
+        return[1 if word in words else 0 for word in vocabulary]
 
+    def parse_intents(self):
+        lemmatizer = nltk.WordNetLemmatizer()
+        if os.path.exists(self.intents_path):
+            with open(self.intents_path, 'r') as file:
+                intents = json.load(file)
 
+            #Iterate through the intents to parse
+            for intent in intents['intents']:
+                if intent['tag'] not in self.intents:
+                    self.intents.append(intent['tag'])
+                    self.intents_responses[intent['tag']] = intent['responses']
 
+                for pattern in intent['patterns']:
+                    ptrn_words = self.tokenize(pattern)
+                    self.vocabulary.extend(ptrn_words)
+                    self.documents.append((ptrn_words, intent['tag']))
 
+                self.vocabulary = sorted(set(self.vocabulary))
