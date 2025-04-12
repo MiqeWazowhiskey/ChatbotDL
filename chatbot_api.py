@@ -1,5 +1,4 @@
-from main import ChatbotHandler
-import json
+from Train.main import ChatbotHandler
 import sys
 import os
 

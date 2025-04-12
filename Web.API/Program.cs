@@ -9,6 +9,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ChatbotService>();
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:8000")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,13 +29,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
+
 app.UseHttpsRedirection();
 
 // Chatbot endpoints
 app.MapPost("/chat", async ([FromBody] ChatRequest request, ChatbotService chatbot) =>
 {
-    var response = await chatbot.GetResponse(request.Message);
-    return Results.Ok(new ChatResponse(response));
+    try
+    {
+        var response = await chatbot.GetResponse(request.Message);
+        return Results.Ok(new ChatResponse(response));
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error in chat endpoint: {ex.Message}");
+        return Results.BadRequest(new { error = ex.Message });
+    }
 })
 .WithName("Chat")
 .WithOpenApi();
